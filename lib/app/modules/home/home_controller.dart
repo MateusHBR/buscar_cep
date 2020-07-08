@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pesquisa_cep/app/app_controller.dart';
 import 'package:pesquisa_cep/app/modules/home/repository/cep_repository.dart';
 import 'package:pesquisa_cep/app/shared/models/cep_model.dart';
 
@@ -9,9 +9,10 @@ part 'home_controller.g.dart';
 class HomeController = _HomeControllerBase with _$HomeController;
 
 abstract class _HomeControllerBase with Store {
-  CepRepository _cepRepository;
+  final CepRepository _cepRepository;
+  final AppController appController;
 
-  _HomeControllerBase(this._cepRepository) {
+  _HomeControllerBase(this._cepRepository, this.appController) {
     firstTime = true;
   }
 
