@@ -29,6 +29,16 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
         actions: <Widget>[
           Observer(
             builder: (_) {
+              return Switch(
+                value: controller.appController.isDark,
+                onChanged: (value) {
+                  controller.appController.changeTheme();
+                },
+              );
+            },
+          ),
+          Observer(
+            builder: (_) {
               return IconButton(
                 icon: Icon(Icons.clear),
                 onPressed: controller.isEmpty ? null : controller.clearContext,
@@ -112,6 +122,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                             color: Theme.of(context).primaryColor,
                             onPressed: controller.canClick
                                 ? () {
+                                    FocusScope.of(context).unfocus();
                                     if (_formKey.currentState.validate()) {
                                       controller.fetchData();
                                     }

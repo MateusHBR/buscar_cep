@@ -1,3 +1,4 @@
+import 'package:pesquisa_cep/app/app_controller.dart';
 import 'package:pesquisa_cep/app/modules/home/repository/cep_repository.dart';
 import 'package:pesquisa_cep/app/shared/constants/url.dart';
 
@@ -9,7 +10,12 @@ import 'home_page.dart';
 class HomeModule extends ChildModule {
   @override
   List<Bind> get binds => [
-        Bind((i) => HomeController((i.get<CepRepository>()))),
+        Bind(
+          (i) => HomeController(
+            (i.get<CepRepository>()),
+            (i.get<AppController>()),
+          ),
+        ),
         Bind((i) => CepRepository(i.get<Dio>())),
       ];
 
