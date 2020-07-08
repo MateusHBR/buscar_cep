@@ -6,6 +6,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:pesquisa_cep/app/app_widget.dart';
 import 'package:pesquisa_cep/app/modules/home/home_module.dart';
+import './splash/splash_screen.dart';
 
 class AppModule extends MainModule {
   @override
@@ -16,7 +17,8 @@ class AppModule extends MainModule {
 
   @override
   List<Router> get routers => [
-        Router(Modular.initialRoute, module: HomeModule()),
+        Router(Modular.initialRoute, child: (context, args) => SplashScreen()),
+        Router("/home", module: HomeModule()),
       ];
 
   @override
