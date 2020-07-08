@@ -65,7 +65,6 @@ abstract class _HomeControllerBase with Store {
       () => cepList.addAll(cepFuture.value),
     );
     firstTime = false;
-    clearContext();
   }
 
   @action
