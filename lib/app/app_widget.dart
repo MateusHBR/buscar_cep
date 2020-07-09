@@ -16,6 +16,7 @@ class AppWidget extends StatelessWidget {
             title: 'Flutter Slidy',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
+              primarySwatch: Colors.purple,
               brightness: controller.brightness,
             ),
             initialRoute: '/',
