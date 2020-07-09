@@ -1,0 +1,5 @@
+lib/app/modules/start/start_module.dart
+lib/app/modules/start/start_page.dart
+test/app/modules/start/start_page_test.dart
+lib/app/modules/start/start_controller.dart
+test/app/modules/start/start_controller_test.dart
