@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import './shared/repositories/local_storage/local_storage_shared.dart';
 
 part 'app_controller.g.dart';
 
 class AppController = _AppControllerBase with _$AppController;
 
 abstract class _AppControllerBase with Store {
-  _AppControllerBase() {
+  _AppControllerBase(this._shared) {
     loadTheme();
   }
+
+  final LocalStorageShared _shared;
 
   @observable
   Brightness brightness;
@@ -24,24 +27,10 @@ abstract class _AppControllerBase with Store {
     } else {
       brightness = Brightness.dark;
     }
-    saveThemePreferences();
-  }
-
-  void saveThemePreferences() async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setBool('isDark', isDark);
-    // SharedPreferences.getInstance().then(
-    //   (instance) => instance.setBool('isDark', isDark),
-    // );
+    _shared.putTheme('isDark', isDark);
   }
 
   void loadTheme() async {
-    final prefs = await SharedPreferences.getInstance();
-
-    if (prefs.containsKey('isDark') && prefs.getBool('isDark')) {
-      brightness = Brightness.dark;
-    } else {
-      brightness = Brightness.light;
-    }
+    brightness = await _shared.loadTheme();
   }
 }
