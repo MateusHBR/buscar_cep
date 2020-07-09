@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen>
     );
     Timer(
       Duration(milliseconds: 2500),
-      () => Modular.to.pushReplacementNamed('/home'),
+      () => Modular.to.pushReplacementNamed("/start"),
     );
   }
 
