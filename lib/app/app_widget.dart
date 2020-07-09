@@ -10,12 +10,14 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Observer(
       builder: (_) {
-        if (controller.themeData != null) {
+        if (controller.brightness != null) {
           return MaterialApp(
             navigatorKey: Modular.navigatorKey,
             title: 'Flutter Slidy',
             debugShowCheckedModeBanner: false,
-            theme: controller.themeData,
+            theme: ThemeData(
+              brightness: controller.brightness,
+            ),
             initialRoute: '/',
             onGenerateRoute: Modular.generateRoute,
           );

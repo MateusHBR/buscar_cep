@@ -16,18 +16,18 @@ mixin _$AppController on _AppControllerBase, Store {
           Computed<bool>(() => super.isDark, name: '_AppControllerBase.isDark'))
       .value;
 
-  final _$themeDataAtom = Atom(name: '_AppControllerBase.themeData');
+  final _$brightnessAtom = Atom(name: '_AppControllerBase.brightness');
 
   @override
-  ThemeData get themeData {
-    _$themeDataAtom.reportRead();
-    return super.themeData;
+  Brightness get brightness {
+    _$brightnessAtom.reportRead();
+    return super.brightness;
   }
 
   @override
-  set themeData(ThemeData value) {
-    _$themeDataAtom.reportWrite(value, super.themeData, () {
-      super.themeData = value;
+  set brightness(Brightness value) {
+    _$brightnessAtom.reportWrite(value, super.brightness, () {
+      super.brightness = value;
     });
   }
 
@@ -48,7 +48,7 @@ mixin _$AppController on _AppControllerBase, Store {
   @override
   String toString() {
     return '''
-themeData: ${themeData},
+brightness: ${brightness},
 isDark: ${isDark}
     ''';
   }

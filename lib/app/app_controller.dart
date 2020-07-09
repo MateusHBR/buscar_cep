@@ -12,34 +12,36 @@ abstract class _AppControllerBase with Store {
   }
 
   @observable
-  ThemeData themeData;
+  Brightness brightness;
 
   @computed
-  bool get isDark => themeData.brightness == Brightness.dark;
+  bool get isDark => brightness == Brightness.dark;
 
   @action
   void changeTheme() {
     if (isDark) {
-      themeData = ThemeData.light();
+      brightness = Brightness.light;
     } else {
-      themeData = ThemeData.dark();
+      brightness = Brightness.dark;
     }
     saveThemePreferences();
   }
 
-  void saveThemePreferences() {
-    SharedPreferences.getInstance().then(
-      (instance) => instance.setBool('isDark', isDark),
-    );
+  void saveThemePreferences() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isDark', isDark);
+    // SharedPreferences.getInstance().then(
+    //   (instance) => instance.setBool('isDark', isDark),
+    // );
   }
 
   void loadTheme() async {
     final prefs = await SharedPreferences.getInstance();
 
     if (prefs.containsKey('isDark') && prefs.getBool('isDark')) {
-      themeData = ThemeData.dark();
+      brightness = Brightness.dark;
     } else {
-      themeData = ThemeData.light();
+      brightness = Brightness.light;
     }
   }
 }
